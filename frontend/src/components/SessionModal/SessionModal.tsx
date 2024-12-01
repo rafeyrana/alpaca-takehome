@@ -216,7 +216,7 @@ const SessionModal: React.FC<SessionModalProps> = ({ isOpen, onClose }) => {
           {summary && (
             <div className="mt-8 w-full">
               <div className="border rounded-lg p-4 bg-gray-50">
-                <h3 className="text-lg font-semibold mb-4 text-center">Generated Summary</h3>
+                <h3 className="text-lg font-semibold mb-4 text-center text-[rgb(27,140,180)]">Generated Summary</h3>
                 <SummaryDisplay
                   summary={summary}
                   onSuggestion={handleSuggestion}

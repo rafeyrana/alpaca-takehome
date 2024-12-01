@@ -71,7 +71,6 @@ export const SummaryDisplay: React.FC<SummaryDisplayProps> = ({
 
   return (
     <div className="mt-4 relative">
-      <h3 className="text-lg font-semibold mb-2">Generated Summary</h3>
       <div 
         className="p-4 border rounded-lg bg-white shadow-sm"
         onMouseUp={handleSelection}

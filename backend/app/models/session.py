@@ -48,6 +48,16 @@ class SaveSessionRequest(BaseModel):
     notes: List[Note]
     summary: str
 
+class RegenerateSummaryRequest(BaseModel):
+    """Request model for regenerate summary endpoint"""
+    patientName: str
+    sessionType: str
+    summaryType: str
+    notes: List[Note]
+    currentSummary: str
+    selectedText: str
+    suggestion: str
+
 # Response Models
 class BaseResponse(BaseModel):
     """Base response model for consistent response structure"""

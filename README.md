@@ -1,79 +1,118 @@
-# Alpaca Health Software Engineering Take-Home Project
+# Alpaca Health Session Note Generator
 
-### Project Description
+A modern, AI-powered session note generator built in 4 hours and 14 minutes for the Alpaca Health take-home challenge. This application streamlines the process of creating and managing therapy session notes with an intuitive interface and powerful AI assistance.
 
-Visit this link for details:
-[https://harviio.notion.site/Alpaca-Health-Eng-Take-home-Project-1411bfc50b90803382d4cae01f9bcf18?pvs=4](https://www.notion.so/harviio/ABA-Session-Note-Generator-Take-Home-Project-1411bfc50b90803382d4cae01f9bcf18?pvs=4)
 
-## Setup Instructions
+## 🌟 Key Features
+- **Interactive Note Taking**: Dynamic bullet-point interface for structured note entry
+- **AI-Powered Summary Generation**: Intelligent session summary generation with multiple format options
+- **Smart Text Regeneration**: Context-aware text regeneration for specific sections
+- **Modern UI/UX**: Clean, intuitive interface with Alpaca Health's design language
+- **Robust Backend**: FastAPI-powered backend with Postgres database
+- **Comprehensive Testing**: Extensive test suite for API, services, and database layers
 
-### Backend Setup (Python 3.11+ required)
 
-```bash
-# Create and activate virtual environment
-python -m venv alpaca_venv
-source alpaca_venv/bin/activate  # or `venv\Scripts\activate` on Windows
+## 🎨 UI/UX Considerations
 
-# Install dependencies
-pip install -r requirements.txt
+- Intuitive note-taking interface
+- Clear visual hierarchy
+- Responsive design
+- Accessibility compliance
 
-# Start the server
-fastapi dev main.py
+## 🏗 Architecture & Design Decisions
+
+### Frontend (Next.js + TypeScript)
+- **Component Architecture**: Modular design with reusable components
+  - `SessionModal`: Core modal component for session management
+  - `SummaryDisplay`: Dedicated summary visualization
+  - `PatientNameInput`: Reusable input component
+  - `SuggestionBox`: Smart text regeneration interface
+- **State Management**: React hooks for local state and clean props passing flow and prop elevation when needed
+- **TypeScript**: Strong typing for enhanced code reliability
+- **Styling**: Tailwind CSS for responsive design
+
+### Backend (FastAPI + SQLAlchemy)
+- **MVC Architecture**: Clean separation of concerns for maintainability
+  - Models: SQLAlchemy models for data structure
+  - Services: Business logic layer
+  - Controllers: API endpoint handlers
+- **Database**: Postgres for simplicity and portability
+- **Async Support**: Fully asynchronous API endpoints
+- **LLM Integration**: Modular LLM client for easy provider switching (Can switch to self-hosted LLMs, Claude, etc. (might be important for cost and data protection))
+
+## 🛠 Technical Implementation
+
+### Clean Code Practices
+1. **SOLID Principles**
+   - Single Responsibility: Each component has one clear purpose
+   - Open/Closed: Extensible architecture for future features
+   - Interface Segregation: Clean API contracts
+   - Dependency Inversion: Modular dependencies
+
+2. **Testing Strategy**
+   - Unit Tests: Services and utilities
+   - Integration Tests: API endpoints
+   - Database Tests: Data layer operations
+   - Mock LLM responses for consistent testing
+
+3. **Error Handling**
+   - Comprehensive error states
+   - User-friendly error messages
+   - Proper HTTP status codes
+   - Validation at all layers
+
+
+## 🚀 Setup & Installation
+
+### Configure Environment Variables
+Create a `.env` file in the root directory of your project and add the following configuration:
+
+```env
+DATABASE_URL=postgresql://localhost/alpaca_health OR <YOUR_DATABASE_URL>
+OPENAI_API_KEY= <YOUR_OPENAI_API_KEY>
 ```
 
-### Frontend Setup (Node.js 18+ required)
+Replace the values with your actual environment settings as needed.
+
+---
+
+### Backend Setup (Python 3.11+)
+Set up the Python virtual environment and install dependencies:
 
 ```bash
-# Navigate to frontend directory
+python -m venv alpaca_venv
+source alpaca_venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+---
+
+### Frontend Setup (Node.js 18+)
+Navigate to the `frontend` directory and start the development server:
+
+```bash
 cd frontend
-
-# Install dependencies
 npm install
-
-# Start the development server
 npm run dev
 ```
 
-The application will be available at:
 
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8000
-- API Documentation: http://localhost:8000/docs
+## 🎯 Future Enhancements
 
-## Default Project Structure
+1. **Feature Expansions**
+   - Template support for routine appointments
+   - RAG over all the history / notes of some particular user to get context / prep for upcoming sessions
+   - Voice input for note-taking
+   - OCR/VLLM for image processing of handwritten notes to be added as well
+   - Add user authentication
+   - Add support for user specific notes search (could have been implemented if I had some more time)
+   - Healthcare CRM integration for syncing across multiple platforms
+   - Add more LLM providers (self hosted LLMs finetuned for this specific use case)
 
-- `frontend/`: Next.js application
-  - `src/components/`: Reusable React components
-  - `src/app/`: Next.js app router pages
-- `backend/`: FastAPI application
-  - `app/main.py`: API endpoints
+2. **Technical Improvements**
+   - Microservices architecture for scaling
+   - Multi-provider LLM support
 
-## Development
 
-- Frontend runs on port 3000 with hot reload enabled
-- Backend runs on port 8000 with auto-reload enabled
-- API documentation available at http://localhost:8000/docs
 
-## Submission
-
-1. Create a private GitHub repository
-2. Implement your solution
-3. Document any assumptions or trade-offs
-4. Include instructions for running your solution
-5. Send us the repository link
-
-## Time Expectation
-
-- Expected time: 3-4 hours
-- Please don't spend more than 6 hours
-
-## Evaluation Criteria
-
-| Category | Details | Weight |
-|----------|---------|--------|
-| Product sense and scoping | - Final product decisions alignment with requirements<br>- Appropriate deprioritization of non-crucial parts | 10% |
-| Technology selection | - Right tools chosen for the job | 10% |
-| Technical Level | - Well-organized and intuitive code structure<br>- Modular code (e.g., React components used)<br>- Proper use of React hooks<br>- Good state management<br>- Correct use of useEffect hooks | 40% |
-| Craft and Quality | - Usable and intuitive UI/UX<br>- Presence and severity of bugs | 20% |
-| Documentation | - Clear communication of logic and technical decisions in README | 10% |
-| Testing | - Presence of tests<br>- Quality and robustness of tests | 10% |

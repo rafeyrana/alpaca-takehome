@@ -23,6 +23,7 @@ const PatientNameInput: React.FC<PatientNameInputProps> = React.memo(({ value, o
         aria-label="Patient name"
         aria-invalid={!!error}
         aria-describedby={error ? "patient-name-error" : undefined}
+        style={{ color: 'black' }}
       />
       {error && (
         <p 

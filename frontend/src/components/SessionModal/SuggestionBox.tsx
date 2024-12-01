@@ -52,22 +52,47 @@ export const SuggestionBox: React.FC<SuggestionBoxProps> = ({
   return (
     <div
       ref={boxRef}
-      className="fixed bg-white shadow-lg rounded-lg p-3 z-50 w-64"
-      style={{ transform: 'translate3d(0, 0, 0)' }}
+      className="fixed bg-white p-4 rounded-lg shadow-lg border border-gray-200"
+      style={{ zIndex: 1000 }}
     >
-      <h3 className="text-sm font-semibold mb-2 text-gray-700">Suggest edits</h3>
+      <div className="flex justify-between items-center mb-2">
+        <h3 className="text-sm font-semibold text-gray-700">Suggest an edit</h3>
+        <button
+          onClick={onClose}
+          className="text-gray-500 hover:text-gray-700 focus:outline-none"
+          aria-label="Close suggestion box"
+        >
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
       <form onSubmit={handleSubmit} className="space-y-2">
         <textarea
           value={suggestion}
           onChange={(e) => setSuggestion(e.target.value)}
-          className="w-full p-2 border rounded-md text-sm resize-none focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-700"
-          rows={2}
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter your suggestion..."
+          rows={3}
           autoFocus
+          style={{ color: 'black' }}
         />
-        <div className="flex justify-end space-x-2">
+        <div className="flex justify-end">
           <button
             type="submit"
-            className="px-3 py-1 bg-blue-500 text-white text-sm rounded-md hover:bg-blue-600"
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            disabled={!suggestion.trim()}
           >
             Submit
           </button>

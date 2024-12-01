@@ -47,11 +47,8 @@ async def generate_summary(request: SummaryRequest) -> SummaryResponse:
 
 async def regenerate_summary(request) -> RegenerateSummaryResponse:
     try:
-        print("regenerate_summary")
-        print("request:", request)
-        
+     
         formatted_notes = format_notes(request.notes)
-        print("formatted_notes:", formatted_notes)
         
         prompt = REGENERATE_USER_PROMPT.format(
             patient_name=request.patientName,
@@ -61,13 +58,11 @@ async def regenerate_summary(request) -> RegenerateSummaryResponse:
             selected_text=request.selectedText,
             suggestion=request.suggestion
         )
-        print("prompt:", prompt)
         
         new_summary = await llm_client.generate_response(
             system_prompt=REGENERATE_SYSTEM_PROMPT,
             user_prompt=prompt
         )
-        print("new_summary:", new_summary)
         
         return RegenerateSummaryResponse(
             status="success",
@@ -82,8 +77,6 @@ async def save_session(request: SaveSessionRequest, db: Session) -> str:
    
     try:
         notes_json = [{"content": note.content} for note in request.notes]
-        
-        # Create new session
         session = UserSession(
             patient_name=request.patientName,
             session_type=request.sessionType,
@@ -92,8 +85,7 @@ async def save_session(request: SaveSessionRequest, db: Session) -> str:
             notes=notes_json,
             summary=request.summary
         )
-        
-        # Add and commit to database
+
         db.add(session)
         db.commit()
         db.refresh(session)

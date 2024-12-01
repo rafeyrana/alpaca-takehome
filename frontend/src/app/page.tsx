@@ -1,28 +1,24 @@
+'use client';
+
+import { useState } from 'react';
+import SessionModal from '../components/SessionModal/SessionModal';
+
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-8 p-8 text-center">
-      <h1 className="text-3xl font-bold">
-        Welcome to the Alpaca Health Platform Take-Home Project
-      </h1>
+    <main className="min-h-screen p-8 bg-white flex flex-col items-center justify-center">
+      <h1 className="text-3xl font-bold text-[rgb(37,150,190)] mb-8">Get Started</h1>
+      
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="px-6 py-3 bg-[rgb(37,150,190)] text-white rounded-md hover:bg-[rgb(27,140,180)] transition-colors shadow-sm"
+        suppressHydrationWarning={true}
+      >
+        New User Session
+      </button>
 
-      <p className="max-w-lg text-lg">
-        This is your starting point. Please replace this page with your own
-        implementation following the project requirements.
-      </p>
-
-      <div className="rounded-md bg-yellow-50 p-4 text-yellow-800">
-        <p className="text-sm">
-          Tip: Edit{" "}
-          <code className="rounded bg-yellow-100 px-1 py-0.5 font-mono">
-            src/app/page.tsx
-          </code>{" "}
-          to get started
-        </p>
-      </div>
-
-      <footer className="fixed bottom-4 text-sm text-gray-500">
-        <p>Good luck with your implementation!</p>
-      </footer>
-    </div>
+      <SessionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </main>
   );
 }

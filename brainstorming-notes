@@ -1,0 +1,30 @@
+Raw brainstorming notes:
+
+features to implement:
+
+Alpaca health color scheme design language
+
+using an mvc architecture because of time constraints and keeping it simple, would implement microservices for loose coupling for larger systems
+
+Selection of paragrapher generation 
+
+Types of summary generations 3 types
+
+Modal-bullet point, (click + to add another point), list-params as a drop down / enter text manually as well
+
+Generate —— summary 
+different lengths like short, medium long - optimisation if i had more time: can all be handled by a different prompt and llm to save on costs and optimise for speed etc if needed.
+
+Regenerate—-section - triggered on selection, input a prompt and it will regenerate the summary. optimization: can be used for multiple selections and those can be regenerated in the same call to the backend.
+
+**Features to Consider Later**
+
+* Implement dropdown selection/templates for common notes
+* Fetch user history
+* Maybe add support for uploading images in the notes as well, which can be processed using OCR/VLLM
+* Implement a feature to contextualize user history with history
+* Implement an NLP query feature for users to chat with notes/api
+* Implement syncing with previous healthcare CRM if still in use, using third party API for syncing across multiple platforms
+* Implement predesigned templates for routine appointments which can be edited later using AI
+* Implement voice functionality for faster notes taking/maybe cannot be done in person but for telehealth or online sessions
+* Implement HIPAA compliance and data protection (cannot use external APIs for LLMs which is why I have chosen to make an LLM module so we can swap in multiple providers including self-hosted models)

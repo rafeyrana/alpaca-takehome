@@ -2,7 +2,6 @@
 
 A modern, AI-powered session note generator built in 4 hours and 14 minutes for the Alpaca Health take-home challenge. This application streamlines the process of creating and managing therapy session notes with an intuitive interface and powerful AI assistance.
 
-
 ## 🌟 Key Features
 - **Interactive Note Taking**: Dynamic bullet-point interface for structured note entry
 - **AI-Powered Summary Generation**: Intelligent session summary generation with multiple format options

@@ -21,7 +21,7 @@ interface ValidationErrors {
 }
 
 const SessionModal: React.FC<SessionModalProps> = ({ isOpen, onClose }) => {
-  const { error, handleError, clearError } = useErrorHandler();
+  const {error, handleError, clearError } = useErrorHandler();
   const [duration, setDuration] = useState('30');
   const [patientName, setPatientName] = useState('');
   const [sessionType, setSessionType] = useState('Initial Consultation');
